@@ -1,6 +1,6 @@
 ﻿namespace Card;
 
-public class Card
+public class Card : IComparable<Card>
 {
     private string Suit { get; set; }
     private int CardValue { get; set; }
@@ -17,11 +17,21 @@ public class Card
     }
 
     /// <summary>
-    /// Equals operater overload, based on card value.
+    /// Implement IComparable interface to compare cards based on CardValue.
     /// </summary>
-    /// <param name="c1">An instance of the card class</param>
-    /// <param name="c2">An instance of the card class</param>
-    /// <returns>True if the cards are equal, false otherwise.</returns>
+    /// <param name="other">Another card to compare to</param>
+    /// <returns>-1 if this is less than other, 1 if this is greater, 0 if they are equal.</returns>
+    public int CompareTo(Card other)
+    {
+        return this.CardValue.CompareTo(other.CardValue);
+    }
+
+    /// <summary>
+    /// Overloaded equals operator, compares on card value.
+    /// </summary>
+    /// <param name="c1">An instance of a card object.</param>
+    /// <param name="c2">An instance of a card object.</param>
+    /// <returns></returns>
     public static bool operator ==(Card c1, Card c2)
     {
         if (c1.CardValue.Equals(c2.CardValue))
@@ -35,11 +45,11 @@ public class Card
     }
 
     /// <summary>
-    /// Not equals operater overload, based on card value.
+    /// Overloaded not equals operator, compares on card value.
     /// </summary>
-    /// <param name="c1">An instance of the card class</param>
-    /// <param name="c2">An instance of the card class</param>
-    /// <returns>True if the cards are not equal, false otherwise.</returns>
+    /// <param name="c1">An instance of a card object.</param>
+    /// <param name="c2">An instance of a card object.</param>
+    /// <returns></returns>
     public static bool operator !=(Card c1, Card c2)
     {
         if (!c1.CardValue.Equals(c2.CardValue))
@@ -53,49 +63,34 @@ public class Card
     }
 
     /// <summary>
-    /// Lessthan operater overload, based on card value.
+    /// Lessthan operator overlaod.  Compares on card value.
     /// </summary>
-    /// <param name="c1">An instance of the card class</param>
-    /// <param name="c2">An instance of the card class</param>
-    /// <returns>True c1 is less than c2, false otherwise.</returns>
+    /// <param name="c1">An instance of the card class.</param>
+    /// <param name="c2">An instance of the card class.</param>
+    /// <returns></returns>
     public static bool operator <(Card c1, Card c2)
     {
-        if (c1.CardValue < c2.CardValue)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return c1.CardValue < c2.CardValue;
     }
 
     /// <summary>
-    /// Greaterthan operater overload, based on card value.
+    /// Greaterthan operator overload.  Compares on card value.
     /// </summary>
-    /// <param name="c1">An instance of the card class</param>
-    /// <param name="c2">An instance of the card class</param>
-    /// <returns>True c1 is greater than c2, false otherwise.</returns>
+    /// <param name="c1">An instance of the card class.</param>
+    /// <param name="c2">An instance of the card class.</param>
+    /// <returns></returns>
     public static bool operator >(Card c1, Card c2)
     {
-        if (c1.CardValue > c2.CardValue)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return c1.CardValue > c2.CardValue;
     }
 
     /// <summary>
     /// Gets the name of a card.
     /// </summary>
-    /// <returns>A string containg the name of the card in the form "Name" of "Suit".</returns>
+    /// <returns>A string containing the name of the card in the form "Name" of "Suit".</returns>
     public string GetName()
     {
         string name = string.Empty;
-
 
         if (CardValue == 11)
         {
