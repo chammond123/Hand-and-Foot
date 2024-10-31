@@ -10,15 +10,20 @@ public class Game
     public List<Player> players = [];
     public List<Card> cards = [];
     public Stack<Card> discard = new Stack<Card>();
+    public int Round = 1;
 
     public Game(int numPlayers)
     {
+        if (numPlayers < 4 || numPlayers % 2 != 0)
+        {
+            throw new Exception("Players must be 4 or greater and an even number");
+        }
         for (int i = 0; i < numPlayers; i++)
         {
-            // TODO: Fixme
-            Player player = new Player("Test");
+            Player player = new Player();
             players.Add(player);
         }
+        InitializeCards();
     }
 
     /// <summary>
@@ -42,6 +47,13 @@ public class Game
         Shuffle(cards, rng);
 
     }
+
+    /// <summary>
+    /// Shuffles a deck of cards.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="list">The deck of cards.</param>
+    /// <param name="rng">The randomizer.</param>
     public static void Shuffle<T>(IList<T> list, Random rng)
     {
         int n = list.Count;

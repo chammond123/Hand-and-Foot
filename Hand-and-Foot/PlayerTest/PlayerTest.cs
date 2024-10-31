@@ -21,6 +21,9 @@ public class PlayerTest
             Debug.WriteLine(icard.GetName());
         }
     }
+    /// <summary>
+    /// Tests that the players foot is correctly drawn.
+    /// </summary>
     [TestMethod]
     public void Player_Drawfoot_True()
     {
