@@ -3,7 +3,7 @@
 public class Card : IComparable<Card>
 {
     private string Suit { get; set; }
-    private int CardValue { get; set; }
+    public int CardValue { get; set; }
 
     /// <summary>
     /// Constructor for the card class.
